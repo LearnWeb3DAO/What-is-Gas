@@ -24,9 +24,12 @@ The Pre-London Upgrade is good to understand and easier to wrap your head around
 
 Just like how `seconds` are a unit of time, and `metres` a unit of distance, `gas` by itself is a unit of computation on the Ethereum Network.
 
-The gas unit is used to measure the amount of computational effort required to execute a transaction on Ethereum. Since each transaction requires some computation resources to execute, it requires a fee, commonly called **Gas fees** or **Transaction fees**.
+The **gas unit** is used to measure the amount of computational effort required to execute a transaction on Ethereum. Since each transaction requires some computation resources to execute, it requires a fee, commonly called **Gas fees** or **Transaction fees**.
 
 Gas fees are paid in Ethereum's native currency - **ether** or **ETH**. How gas fees is calculated is slightly different pre- and post-London Upgrade.
+
+> NOTE: Generally when someone says 'Gas' - they refer to 'Gas Fees' not the unit itself. However, for the purposes of this tutorial, we will be technically correct and say 'Gas' when referring to the unit, and 'Gas Fees' when referring to the fees in Ether.
+
 
 ## Pre-London Upgrade
 Before the London Upgrade took place, how much ether you needed to pay for a transaction was calculated using a simple formula. 
@@ -61,11 +64,11 @@ How much the gas price is set to is upto the user. Transactions with higher gas 
 Wallets like Metamask provide reasonable estimates for gas prices based on current network conditions for transactions to be executed - therefore most users don't need to touch the gas price values themselves. (Though, you can enable modification through Metamask settings)
 
 ### Gas Cost Calculation
-When a smart contract is compiled into bytecode, before deployment to the Ethereum network, it is compiled down to OPCODES that can run directly on the Ethereum Virtual Machine. These OPCODES include basic operations like `ADD`, `MUL`, `DIV`, `SUB`, `SHA3`, etc.
+When a smart contract is compiled into bytecode, before deployment to the Ethereum network, it is compiled down to OPCODE. They are simple operations that can run directly on the Ethereum Virtual Machine. You can think of them as analogous to basic operations that can run directly on your Intel or AMD CPU. These OPCODES include basic operations like `ADD`, `MUL`, `DIV`, `SUB`, `SHA3`, etc.
 
 Each OPCODE has a fixed gas cost. The gas cost of a specific function within the smart contract is the sum of the gas costs of all it's OPCODES. [You can find a list of all OPCODES and their associated gas costs here if interested.](https://github.com/crytic/evm-opcodes)
 
-Therefore, more complex transactions which require more OPCODES to execute cost more than simpler transactions. 
+Therefore, more complex transactions which require more OPCODES to execute use more gas (units) than simpler transactions like transferring ETH from one account to another. 
 
 ### Gas Limits
 Now, you can imagine there exist a lot of functions much more complicated than just sending ETH from one account to another. Those which involve loops, or randomness, or rely on user input.
@@ -74,7 +77,7 @@ For such functions, it can be hard to predict exactly the amount of gas that wil
 
 As such, instead of specifying the exact gas cost when deciding how much fees to pay for the transaction, you can specify an upper bound limit. 
 
-**Gas Limit** refers to the maximum amount of gas you're willing to use for the transaction. This is set by the user.
+**Gas Limit** refers to the maximum amount of gas (units) you're willing to use for the transaction. This is set by the user.
 
 Again, wallets like Metamask provide reasonable estimates.
 
@@ -83,7 +86,7 @@ Again, wallets like Metamask provide reasonable estimates.
 Your wallet therefore must have `gas limit * gas price` ether to pay for gas when sending the transaction. Any unspent gas will be refunded when the transaction gets executed and mined.
 
 ### Block Gas Limits
-In addition to user specified gas limits per transaction, the Ethereum network also imposes a limit on the maximum amount of gas allowed in a single block. 
+In addition to user specified gas limits per transaction, the Ethereum network also imposes a limit on the maximum amount of gas (units) allowed in a single block. 
 
 This is done to ensure that each block stays within an allowable range of computational cost. Since more complex transactions take longer to execute, this makes sure that nodes don't start falling out of sync with the rest of the network due to increased computational complexity.
 
@@ -97,7 +100,7 @@ For the purposes of this article, we are primarily interested in the first two p
 
 Prior to the London Upgrade, wallets like Metamask would provide estimates for gas prices based on past network activity. Every wallet used their own methodology to do so. Metamask, specifically, scanned the last 1000 blocks on Ethereum, and predicted the gas price for your transaction. 
 
-Starting with the London Upgrade however, every block was set to have a **base gas price fees**. This was the **minimum** price per unit of gas for getting your transaction included within this block. This was calculated natively by the network based on the demand for block space. This base fees would go on to be burnt by the Ethereum network, therefore forever getting rid of that ETH to offset issuance.
+Starting with the London Upgrade however, every block was set to have a **base gas price fees**. This was the **minimum** price per unit of gas for getting your transaction included within this block. This was calculated natively by the network based on the demand for block space. This base fees would go on to be burnt by the Ethereum network, therefore forever getting rid of that ETH to offset issuance. Since Ethereum does not have an overall maximum supply (unlike Bitcoin, which has a maximum supply of 21M Bitcoins), the burn helps the ETH supply reach an equilibrium by not inflating it infinitely.
 
 In addition to the base fees, the concept of **tipping (priority fees)** was introduced. As the base fees got burnt, the tip was there to compensate miners for executing and propogating user transactions. This is again set by most wallets automatically, though you can choose to set this manually. Higher tip transactions tend to get higher priority.
 
@@ -107,16 +110,18 @@ With this upgrade, the formula to calculate gas fees changed to the following:
 
 ### Example
 
-Going back to the earlier example, if Alice had to pay Bob 1 ETH, the gas cost is 21,000 Gwei. Suppose the base fees is 100 Gwei, and Alice decides to include a tip of 10 Gwei.
+Going back to the earlier example, if Alice had to pay Bob 1 ETH, the gas cost (in units) is 21,000. Suppose the base fees is 100 Gwei, and Alice decides to include a tip of 10 Gwei.
 
-`total gas fees = 21,000 * (100 + 10) = 2,310,000 Gwei = 0.00231 ETH`
+`total gas fees = 21,000 * (100 Gwei + 10 Gwei) = 2,310,000 Gwei = 0.00231 ETH`
 
 ### Variable Block Sizes
 Prior to the London Upgrade, the block gas limit was constant for all blocks. Each block had a maximum capacity of 15M gas. In times of high demand, this resulted in bad user experience, as blocks were operating at full capacity, and users had to wait for the demand to reduce to get included in a block.
 
-The upgrade introduced variable size blocks to Ethereum. Each block now has a *target* gas limit of 15M gas, but the size can increase or decrease along with network demand, up until a maximum of 30M gas.
+The upgrade introduced variable size blocks to Ethereum. Each block now has a **target** gas limit of **15M gas**, but the size can increase or decrease along with network demand, up until a maximum of **30M gas**.
 
-On average, the network achieves equilibrium around 15M gas by modifying the block size and base fees. If the block gas is greater than the 15M target, the base fees for the next block is increased. Similarly, if the block gas is smaller than the 15M target, the base fees for the next block is decreased. The amount by which the base fees gets adjusted is dependent on how far the block gas was from the 15M target.
+On average, the network achieves equilibrium around 15M gas by modifying the block size and base fees. 
+
+**If the block gas is greater than the 15M target, the base fees for the next block is increased. Similarly, if the block gas is smaller than the 15M target, the base fees for the next block is decreased.** The amount by which the base fees gets adjusted is dependent on how far the block gas was from the 15M target.
 
 Take some time to read the last couple of paragraphs and fully grasp them - it is pretty fascinating stuff, but can be a little tricky to wrap your head around.
 
@@ -130,14 +135,16 @@ The base fees is increased by a maximum of 12.5% per block if the target 15M gas
 
 In this example, Block 2 saw the maximum increase possible from the target 15M to 30M. As a result, the base fees for block 3 was increased by 12.5% from 100 Gwei to 112.5 Gwei.
 
-This kept happening, and by block 8, the base fees was 202.7 Gwei. A 102.7% increase from 7 blocks ago! By block 100, base fees was 10302608.6 Gwei - this is insane (and also unrealistic).
+Similarly, since block 3 also hit the maximum limit of 30M gas, which is the maximum possible distance from the target, the base fees for block 4 was again increased by 12.5% to 126.6 Gwei. And so on...
+
+This kept happening, and by block 8, the base fees was 202.7 Gwei. A 102.7% increase from 7 blocks ago! By block 100, base fees was 10302608.6 Gwei - this is insane (and also unrealistic). **This means that a simple ETH transfer at block 100 will cost you (21000 * 10302608.6 Gwei) = 216 ETH.**
 
 Due to this exponential increase in base fees, it can be noted that it is extremely unlikely to see extended spikes of full blocks.
 
 ### Better Gas Estimation
-Relative to the Pre-London Upgrade mechanics, this base fee mechanism change allowed fee prediction to be much more reliable. Following the above table, to create a transaction in block number 9, the wallet can let the user know with 100% certainty that the **maximum base fees** to be added to the next block is `current base fees * 112.5%` or `228.1 Gwei`.
+Relative to the Pre-London Upgrade mechanics, this base fee mechanism change allowed fee prediction to be much more reliable. Following the above table, to create a transaction in block number 9, the wallet can let the user know with 100% certainty that the **maximum base fees** to be added to the next block is `current base fees (base fees of prev block) * 112.5%` = `202.8 * 112.5/100` or `228.1 Gwei`.
 
-Therefore, wallets now know a minimum and maximum range of base fees to provide to the user when supplying estimations. The user can then just adjust the tip, which is usually a fraction of the base fees, for the miner.
+Therefore, wallets now know a minimum and maximum range of base fees to provide to the user when supplying estimations. The minimum is the `current base fees`, and the maximum is the `current base fees * 112.5%` The user can then just adjust the tip, which is usually a fraction of the base fees, for the miner.
 
 ## Why does Gas exist?
 Gas fees help keep the Ethereum network secure. By requiring a fee for every computation executed on the network, bad actors are prevented from spamming the network. 
