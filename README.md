@@ -6,12 +6,12 @@ Gas is one of the most important and fundamental aspects of understanding the Et
 
 While going through the Freshman track tutorials, you may have noticed that transactions made on the Ethereum network require the users to pay a transaction fees. 
 
-- How is this transaction fees calculated?
+- How is this transaction fee calculated?
 - How much ETH do you need to pay for a transaction?
 - Why are some transactions more expensive than others?
 - Why do Gas Fees exist?
 
-The answer to these questions lie within the concept of gas.
+The answers to these questions lie within the concept of gas.
 
 A recent upgrade, the London Upgrade of August 2021, slightly changed how transaction fees are calculated and how gas works. For that reason, we will break this tutorial into two sections:
 
@@ -42,6 +42,7 @@ Before the London Upgrade took place, how much ether you needed to pay for a tra
 Gas prices are denominated in **gwei** - a denomination of ETH.
 
 1 Gwei = 0.000000001 ETH
+
 1 ETH = 10^9 Gwei
 
 So instead of saying your gas price is 0.000000001 ETH, you can say your gas price is 1 Gwei.
@@ -85,6 +86,8 @@ Again, wallets like Metamask provide reasonable estimates.
 
 Your wallet therefore must have `gas limit * gas price` ether to pay for gas when sending the transaction. Any unspent gas will be refunded when the transaction gets executed and mined.
 
+**If, however, your transaction uses more gas than your limit, the transaction will fail and your gas will be gone.**
+
 ### Block Gas Limits
 In addition to user specified gas limits per transaction, the Ethereum network also imposes a limit on the maximum amount of gas (units) allowed in a single block. 
 
@@ -100,7 +103,7 @@ For the purposes of this article, we are primarily interested in the first two p
 
 Prior to the London Upgrade, wallets like Metamask would provide estimates for gas prices based on past network activity. Every wallet used their own methodology to do so. Metamask, specifically, scanned the last 1000 blocks on Ethereum, and predicted the gas price for your transaction. 
 
-Starting with the London Upgrade however, every block was set to have a **base gas price fees**. This was the **minimum** price per unit of gas for getting your transaction included within this block. This was calculated natively by the network based on the demand for block space. This base fees would go on to be burnt by the Ethereum network, therefore forever getting rid of that ETH to offset issuance. Since Ethereum does not have an overall maximum supply (unlike Bitcoin, which has a maximum supply of 21M Bitcoins), the burn helps the ETH supply reach an equilibrium by not inflating it infinitely.
+Starting with the London Upgrade however, every block was set to have a **base gas price fees**. This was the **minimum** price per unit of gas for getting your transaction included within this block. This was calculated natively by the network based on the demand for block space. These base fees would go on to be burnt by the Ethereum network, therefore forever getting rid of that ETH to offset issuance. Since Ethereum does not have an overall maximum supply (unlike Bitcoin, which has a maximum supply of 21M Bitcoins), the burn helps the ETH supply reach an equilibrium by not inflating it infinitely.
 
 In addition to the base fees, the concept of **tipping (priority fees)** was introduced. As the base fees got burnt, the tip was there to compensate miners for executing and propogating user transactions. This is again set by most wallets automatically, though you can choose to set this manually. Higher tip transactions tend to get higher priority.
 
