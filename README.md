@@ -156,7 +156,7 @@ In order to avoid accidental or malicious infinite loops in smart contracts, whi
 
 Code like this will use up all the gas provided, upto the limit, and then the transaction will fail:
 
-```solidity=
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
