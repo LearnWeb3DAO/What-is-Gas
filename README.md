@@ -145,7 +145,7 @@ This kept happening, and by block 8, the base fees was 202.7 Gwei. A 102.7% incr
 Due to this exponential increase in base fees, it can be noted that it is extremely unlikely to see extended spikes of full blocks.
 
 ### Better Gas Estimation
-Relative to the Pre-London Upgrade mechanics, this base fee mechanism change allowed fee prediction to be much more reliable. Following the above table, to create a transaction in block number 9, the wallet can let the user know with 100% certainty that the **maximum base fees** to be added to the next block is `current base fees (base fees of prev block) * 112.5%` = `202.8 * 112.5/100` or `228.1 Gwei`.
+Relative to the Pre-London Upgrade mechanics, this base fee mechanism change allowed fee prediction to be much more reliable. Following the above table, to create a transaction in block number 9, the wallet can let the user know with 100% certainty that the **maximum base fees** to be added to the next block is `current base fees = (base fees of prev block) * 112.5%` = `202.8 * 112.5/100` or `228.1 Gwei`.
 
 Therefore, wallets now know a minimum and maximum range of base fees to provide to the user when supplying estimations. The minimum is the `current base fees`, and the maximum is the `current base fees * 112.5%` The user can then just adjust the tip, which is usually a fraction of the base fees, for the miner.
 
