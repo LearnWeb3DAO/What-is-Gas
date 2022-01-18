@@ -11,7 +11,7 @@ While going through the Freshman track tutorials, you may have noticed that tran
 - Why are some transactions more expensive than others?
 - Why do Gas Fees exist?
 
-The answers to these questions lie within the concept of gas.
+The answer to these questions lie within the concept of gas.
 
 A recent upgrade, the London Upgrade of August 2021, slightly changed how transaction fees are calculated and how gas works. For that reason, we will break this tutorial into two sections:
 
