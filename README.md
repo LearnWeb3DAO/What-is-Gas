@@ -4,7 +4,7 @@ Gas is one of the most important and fundamental aspects of understanding the Et
 
 > Gas is the fuel that allows it (Ethereum) to operate, in the same way that a car needs gasoline to run.
 
-While going through the Freshman track tutorials, you may have noticed that transactions made on the Ethereum network require the users to pay a transaction fees. 
+While going through the Freshman track tutorials, you may have noticed that transactions made on the Ethereum network require the users to pay a transaction fee. 
 
 - How is this transaction fee calculated?
 - How much ETH do you need to pay for a transaction?
