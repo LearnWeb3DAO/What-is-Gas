@@ -65,7 +65,7 @@ How much the gas price is set to is upto the user. Transactions with higher gas 
 Wallets like Metamask provide reasonable estimates for gas prices based on current network conditions for transactions to be executed - therefore most users don't need to touch the gas price values themselves. (Though, you can enable modification through Metamask settings)
 
 ### Gas Cost Calculation
-When a smart contract is compiled into bytecode, before deployment to the Ethereum network, it is compiled down to OPCODE. They are simple operations that can run directly on the Ethereum Virtual Machine. You can think of them as analogous to basic operations that can run directly on your Intel or AMD CPU. These OPCODES include basic operations like `ADD`, `MUL`, `DIV`, `SUB`, `SHA3`, etc.
+When a smart contract is compiled into bytecode, before deployment to the Ethereum network, it is compiled down to OPCODES. These are simple operations that can run directly on the Ethereum Virtual Machine. You can think of them as analogous to basic operations that can run directly on your Intel or AMD CPU. These OPCODES include basic operations like `ADD`, `MUL`, `DIV`, `SUB`, `SHA3`, etc.
 
 Each OPCODE has a fixed gas cost. The gas cost of a specific function within the smart contract is the sum of the gas costs of all it's OPCODES. [You can find a list of all OPCODES and their associated gas costs here if interested.](https://github.com/crytic/evm-opcodes)
 
