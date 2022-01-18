@@ -69,10 +69,10 @@ When a smart contract is compiled into bytecode, before deployment to the Ethere
 
 Each OPCODE has a fixed gas cost. The gas cost of a specific function within the smart contract is the sum of the gas costs of all it's OPCODES. [You can find a list of all OPCODES and their associated gas costs here if interested.](https://github.com/crytic/evm-opcodes)
 
-Therefore, more complex transactions which require more OPCODES to execute use more gas (units) than simpler transactions like transferring ETH from one account to another. 
+Therefore, more complex transactions which require more OPCODES to execute end up using more gas (units) than simpler transactions like transferring ETH from one account to another. 
 
 ### Gas Limits
-Now, you can imagine there exist a lot of functions much more complicated than just sending ETH from one account to another. Those which involve loops, or randomness, or rely on user input.
+Now, you can imagine that there exist a lot of functions that are much more complicated than just sending ETH from one account to another. Those which involve loops, or randomness, or rely on user input.
 
 For such functions, it can be hard to predict exactly the amount of gas that will be required for execution as it depends on other variables.
 
