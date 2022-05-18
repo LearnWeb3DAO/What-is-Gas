@@ -4,14 +4,14 @@ Gas is one of the most important and fundamental aspects of understanding the Et
 
 > Gas is the fuel that allows it (Ethereum) to operate, in the same way that a car needs gasoline to run.
 
-While going through the Freshman track tutorials, you may have noticed that transactions made on the Ethereum network require the users to pay a transaction fees. 
+While going through the Freshman track tutorials, you may have noticed that transactions made on the Ethereum network require the users to pay a transaction fee. 
 
 - How is this transaction fee calculated?
 - How much ETH do you need to pay for a transaction?
 - Why are some transactions more expensive than others?
 - Why do Gas Fees exist?
 
-The answers to these questions lie within the concept of gas.
+The answer to these questions lie within the concept of gas.
 
 A recent upgrade, the London Upgrade of August 2021, slightly changed how transaction fees are calculated and how gas works. For that reason, we will break this tutorial into two sections:
 
@@ -65,14 +65,14 @@ How much the gas price is set to is upto the user. Transactions with higher gas 
 Wallets like Metamask provide reasonable estimates for gas prices based on current network conditions for transactions to be executed - therefore most users don't need to touch the gas price values themselves. (Though, you can enable modification through Metamask settings)
 
 ### Gas Cost Calculation
-When a smart contract is compiled into bytecode, before deployment to the Ethereum network, it is compiled down to OPCODE. They are simple operations that can run directly on the Ethereum Virtual Machine. You can think of them as analogous to basic operations that can run directly on your Intel or AMD CPU. These OPCODES include basic operations like `ADD`, `MUL`, `DIV`, `SUB`, `SHA3`, etc.
+When a smart contract is compiled into bytecode, before deployment to the Ethereum network, it is compiled down to OPCODES. These are simple operations that can run directly on the Ethereum Virtual Machine. You can think of them as analogous to basic operations that can run directly on your Intel or AMD CPU. These OPCODES include basic operations like `ADD`, `MUL`, `DIV`, `SUB`, `SHA3`, etc.
 
 Each OPCODE has a fixed gas cost. The gas cost of a specific function within the smart contract is the sum of the gas costs of all it's OPCODES. [You can find a list of all OPCODES and their associated gas costs here if interested.](https://github.com/crytic/evm-opcodes)
 
-Therefore, more complex transactions which require more OPCODES to execute use more gas (units) than simpler transactions like transferring ETH from one account to another. 
+Therefore, more complex transactions which require more OPCODES to execute end up using more gas (units) than simpler transactions like transferring ETH from one account to another. 
 
 ### Gas Limits
-Now, you can imagine there exist a lot of functions much more complicated than just sending ETH from one account to another. Those which involve loops, or randomness, or rely on user input.
+Now, you can imagine that there exist a lot of functions that are much more complicated than just sending ETH from one account to another. Those which involve loops, or randomness, or rely on user input.
 
 For such functions, it can be hard to predict exactly the amount of gas that will be required for execution as it depends on other variables.
 
