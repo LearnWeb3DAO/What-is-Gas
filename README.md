@@ -189,7 +189,7 @@ As such, there are a lot of things being worked on, and some already available, 
 
 Primarily, the network upgrades that will be offered by Ethereum 2.0 (also known as Eth2) will ultimately address some of the gas issues, which in turn will enable the network to process thousands of transactions per second and scale globally.
 
-In addition, a lot of work is being done on Layer 2 Scaling. We will learn much more in depth about Layer 2 Scaling and Layer 2 platforms later on, but essentially they are networks which shift the heavy computation aspects of smart contracts somewhere else, and use the Ethereum mainnet as a final settlement layer, thereby inheriting the security and decentralization benefits of Ethereum, and maintaining low gas fees and high transaction speed for users.
+In addition, a lot of work is being done on Layer 2 Scaling. We will learn much more in depth about Layer 2 Scaling and Layer 2 platforms later on `Senior` track, but essentially they are networks which shift the heavy computation aspects of smart contracts somewhere else, and use the Ethereum mainnet as a final settlement layer, thereby inheriting the security and decentralization benefits of Ethereum, and maintaining low gas fees and high transaction speed for users.
 
 ## Resources
 The following resources are recommended, but optional, readings/viewings to learn more about gas:
