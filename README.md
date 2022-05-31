@@ -144,10 +144,12 @@ This kept happening, and by block 8, the base fees was 202.7 Gwei. A 102.7% incr
 
 Due to this exponential increase in base fees, it can be noted that it is extremely unlikely to see extended spikes of full blocks.
 
-### Better Gas Estimation
-Relative to the Pre-London Upgrade mechanics, this base fee mechanism change allowed fee prediction to be much more reliable. Following the above table, to create a transaction in block number 9, the wallet can let the user know with 100% certainty that the **maximum base fees** to be added to the next block is `current base fees (base fees of prev block) * 112.5%` = `202.8 * 112.5/100` or `228.1 Gwei`.
+It should be noted that the base fee is also decreased by a maximum of 12.5%, helping the spikes return to equilibrium after traffic begins to slow down.
 
-Therefore, wallets now know a minimum and maximum range of base fees to provide to the user when supplying estimations. The minimum is the `current base fees`, and the maximum is the `current base fees * 112.5%` The user can then just adjust the tip, which is usually a fraction of the base fees, for the miner.
+### Better Gas Estimation
+Relative to the Pre-London Upgrade mechanics, this base fee mechanism change allowed fee prediction to be much more reliable. Following the above table, to create a transaction in block number 9, the wallet can let the user know with 100% certainty that the **maximum base fees** to be added to the next block is `current base fees (base fees of prev block) * 112.5%` = `202.8 * 112.5/100` or `228.1 Gwei`. Conversely, the **minimum base fees** could be determined knowing a decrease could only be 12.5%: `current base fees (base fees of prev block) * 87.5%` = `202.8 * 87.5/100` or `177.45 Gwei`.
+
+Therefore, wallets now know a minimum and maximum range of base fees to provide to the user when supplying estimations. The minimum is the `current base fees * 87.5%`, and the maximum is the `current base fees * 112.5%` The user can then just adjust the tip, which is usually a fraction of the base fees, for the miner.
 
 ## Why does Gas exist?
 Gas fees help keep the Ethereum network secure. By requiring a fee for every computation executed on the network, bad actors are prevented from spamming the network. 
