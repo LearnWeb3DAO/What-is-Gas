@@ -59,8 +59,13 @@ Therefore, `gas fees = 21,000 * 200 = 4,200,000 Gwei = 0.0042 ETH`
 
 So, when Alice sends the money, 1.0042 ETH will be deducted from her account, and Bob will receive 1 ETH. The 0.0042 ETH fees goes to the miner who mined the block containing Alice's transaction.
 
+<Quiz questionId="3658c2e2-355d-4a38-a08f-d2990ec4bd79" />
+<Quiz questionId="ae1ac31d-8a45-436f-99f3-275fc17c0d45" />
+
 **You may be wondering how the gas price was set to 200 Gwei?**
-How much the gas price is set to is upto the user. Transactions with higher gas price have higher priority to be included in a block, as miners receive a higher tip for mining those first. 
+How much the gas price is set to is upto the user. Transactions with higher gas price have higher priority to be included in a block, as miners receive a higher tip for mining those first. Gas price, therefore, basically works like an open auction, or a bribe to miners. Whoever is willing to pay the highest price, or highest bribe, to the miners, gets their transaction included faster than the lower priced ones.
+
+<Quiz questionId="684baf6d-328b-4ad3-b176-38b06d750d11" />
 
 Wallets like Metamask provide reasonable estimates for gas prices based on current network conditions for transactions to be executed - therefore most users don't need to touch the gas price values themselves. (Though, you can enable modification through Metamask settings)
 
@@ -70,6 +75,8 @@ When a smart contract is compiled into bytecode, before deployment to the Ethere
 Each OPCODE has a fixed gas cost. The gas cost of a specific function within the smart contract is the sum of the gas costs of all it's OPCODES. [You can find a list of all OPCODES and their associated gas costs here if interested.](https://github.com/crytic/evm-opcodes)
 
 Therefore, more complex transactions which require more OPCODES to execute end up using more gas (units) than simpler transactions like transferring ETH from one account to another. 
+
+<Quiz questionId="3a867bc5-bbec-4e39-95b2-ba0e3b52257b" />
 
 ### Gas Limits
 Now, you can imagine that there exist a lot of functions that are much more complicated than just sending ETH from one account to another. Those which involve loops, or randomness, or rely on user input.
@@ -101,6 +108,8 @@ On August 5th, 2021 - the London Upgrade was implemented on the Ethereum network
 
 For the purposes of this article, we are primarily interested in the first two points.
 
+<Quiz questionId="98264d20-85a0-48e2-b1fa-a435814bee79" />
+
 Prior to the London Upgrade, wallets like Metamask would provide estimates for gas prices based on past network activity. Every wallet used their own methodology to do so. Metamask, specifically, scanned the last 1000 blocks on Ethereum, and predicted the gas price for your transaction. 
 
 Starting with the London Upgrade however, every block was set to have a **base gas price fees**. This was the **minimum** price per unit of gas for getting your transaction included within this block. This was calculated natively by the network based on the demand for block space. These base fees would go on to be burnt by the Ethereum network, therefore forever getting rid of that ETH to offset issuance. Since Ethereum does not have an overall maximum supply (unlike Bitcoin, which has a maximum supply of 21M Bitcoins), the burn helps the ETH supply reach an equilibrium by not inflating it infinitely.
@@ -111,16 +120,22 @@ With this upgrade, the formula to calculate gas fees changed to the following:
 
 `gas fees = gas spent * (base fees + priority fees)`
 
+<Quiz questionId="5608fd5f-9f59-410c-a556-01408de738b0" />
+
 ### Example
 
 Going back to the earlier example, if Alice had to pay Bob 1 ETH, the gas cost (in units) is 21,000. Suppose the base fees is 100 Gwei, and Alice decides to include a tip of 10 Gwei.
 
 `total gas fees = 21,000 * (100 Gwei + 10 Gwei) = 2,310,000 Gwei = 0.00231 ETH`
 
+<Quiz questionId="eeb05397-e992-4e06-ac66-e87001c9d3cb" />
+
 ### Variable Block Sizes
 Prior to the London Upgrade, the block gas limit was constant for all blocks. Each block had a maximum capacity of 15M gas. In times of high demand, this resulted in bad user experience, as blocks were operating at full capacity, and users had to wait for the demand to reduce to get included in a block.
 
 The upgrade introduced variable size blocks to Ethereum. Each block now has a **target** gas limit of **15M gas**, but the size can increase or decrease along with network demand, up until a maximum of **30M gas**.
+
+<Quiz questionId="857488bf-5f85-4fd5-b6ff-4686799f69f2" />
 
 On average, the network achieves equilibrium around 15M gas by modifying the block size and base fees. 
 
@@ -151,6 +166,8 @@ Relative to the Pre-London Upgrade mechanics, this base fee mechanism change all
 
 Therefore, wallets now know a minimum and maximum range of base fees to provide to the user when supplying estimations. The minimum is the `current base fees * 87.5%`, and the maximum is the `current base fees * 112.5%` The user can then just adjust the tip, which is usually a fraction of the base fees, for the miner.
 
+<Quiz questionId="af9eef82-6a4b-49b6-be31-67fb539e68bd" />
+
 ## Why does Gas exist?
 Gas fees help keep the Ethereum network secure. By requiring a fee for every computation executed on the network, bad actors are prevented from spamming the network. 
 
@@ -180,6 +197,8 @@ contract Gas {
 
 The fundamental unit to make all of this possible is Gas.
 
+<Quiz questionId="e1a8370e-558b-482b-a46e-6f1d1ce20595" />
+
 ## Reducing Gas Fees
 High fees on Ethereum is a hot topic these days. The Ethereum community has solemlny swore to not hurt the decentralization or security of the network. As such, tradeoffs were made in favour of security which leads to the Ethereum network currently having higher transaction fees than other blockchains such as Solana, which made the tradeoff in favour of lower fees at the expense of security and decentralization.
 
@@ -199,3 +218,5 @@ The following resources are recommended, but optional, readings/viewings to lear
 - [The London Upgrade](https://ethereum.org/en/history/#london)
 - [Gas optimizations in smart contracts](https://medium.com/coinmonks/8-ways-of-reducing-the-gas-consumption-of-your-smart-contracts-9a506b339c0a)
 - [More on Layer 2 Scaling](https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/)
+
+<SubmitQuiz />
