@@ -22,7 +22,7 @@ The Pre-London Upgrade is good to understand and easier to wrap your head around
 
 ## Gas: General Concepts
 
-Just like how `seconds` are a unit of time, and `metres` a unit of distance, `gas` by itself is a unit of computation on the Ethereum Network.
+Just like how `seconds` are a unit of time, and `meters` a unit of distance, `gas` by itself is a unit of computation on the Ethereum Network.
 
 The **gas unit** is used to measure the amount of computational effort required to execute a transaction on Ethereum. Since each transaction requires some computation resources to execute, it requires a fee, commonly called **Gas fees** or **Transaction fees**.
 
